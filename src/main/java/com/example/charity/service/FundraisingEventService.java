@@ -1,0 +1,27 @@
+package com.example.charity.service;
+
+import com.example.charity.model.FundraisingEvent;
+import com.example.charity.repository.FundraisingEventRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class FundraisingEventService {
+
+    private final FundraisingEventRepository fundraisingEventRepository;
+
+    public FundraisingEvent createEvent(FundraisingEvent event) {
+        return fundraisingEventRepository.save(event);
+    }
+
+    public List<FundraisingEvent> getAllEvents() {
+        return fundraisingEventRepository.findAll();
+    }
+
+    public FundraisingEvent getEventById(Long id) {
+        return fundraisingEventRepository.findById(id).orElseThrow(() -> new RuntimeException("Event not found"));
+    }
+}
