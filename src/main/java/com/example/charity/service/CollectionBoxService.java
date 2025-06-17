@@ -5,7 +5,6 @@ import com.example.charity.model.FundraisingEvent;
 import com.example.charity.repository.CollectionBoxRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

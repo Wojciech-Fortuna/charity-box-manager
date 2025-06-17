@@ -8,4 +8,3 @@ public record CreateFundraisingEventDto(
         @NotBlank String name,
         @NotNull Currency currency
 ) {}
-

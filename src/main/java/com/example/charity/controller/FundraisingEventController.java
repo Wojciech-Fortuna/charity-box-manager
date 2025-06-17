@@ -7,7 +7,6 @@ import com.example.charity.service.FundraisingEventService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -31,5 +30,4 @@ public class FundraisingEventController {
     public List<FinancialReportDto> getFinancialReport() {
         return fundraisingEventService.getFinancialReport();
     }
-
 }

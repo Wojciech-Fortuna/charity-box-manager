@@ -3,7 +3,6 @@ package com.example.charity.dto;
 import com.example.charity.model.Currency;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
-
 import java.math.BigDecimal;
 
 public record AddMoneyRequestDto(
@@ -11,4 +10,3 @@ public record AddMoneyRequestDto(
         @NotNull Currency currency,
         @NotNull @DecimalMin("0.01") BigDecimal amount
 ) {}
-

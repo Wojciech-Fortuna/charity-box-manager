@@ -2,7 +2,6 @@ package com.example.charity.dto;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import lombok.Getter;
-
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,5 +25,4 @@ public class CurrencyApiResponse {
             currencies.put(currencyCode.toLowerCase(), parsedRates);
         }
     }
-
 }

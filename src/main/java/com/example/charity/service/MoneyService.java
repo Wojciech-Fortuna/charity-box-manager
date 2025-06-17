@@ -7,7 +7,6 @@ import com.example.charity.model.Money;
 import com.example.charity.repository.MoneyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
@@ -66,5 +65,4 @@ public class MoneyService {
 
         deleteByBox(box);
     }
-
 }

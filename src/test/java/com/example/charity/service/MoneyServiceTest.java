@@ -7,11 +7,8 @@ import com.example.charity.model.Money;
 import com.example.charity.repository.MoneyRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
-
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -32,7 +29,7 @@ class MoneyServiceTest {
     void addMoneyToAssignedBox_savesMoney() {
         CollectionBox box = new CollectionBox();
         box.setBoxId(1L);
-        box.setEvent(new FundraisingEvent()); // means "assigned"
+        box.setEvent(new FundraisingEvent());
 
         moneyService.addMoneyToBox(box, Currency.EUR, BigDecimal.valueOf(10.00));
 
@@ -41,7 +38,7 @@ class MoneyServiceTest {
 
     @Test
     void addMoneyToUnassignedBox_throwsException() {
-        CollectionBox box = new CollectionBox(); // no event = unassigned
+        CollectionBox box = new CollectionBox();
 
         assertThatThrownBy(() -> moneyService.addMoneyToBox(box, Currency.EUR, BigDecimal.TEN))
                 .isInstanceOf(IllegalStateException.class)
@@ -90,7 +87,7 @@ class MoneyServiceTest {
 
     @Test
     void emptyBox_whenBoxNotAssigned_throwsException() {
-        CollectionBox box = new CollectionBox(); // no event assigned
+        CollectionBox box = new CollectionBox();
 
         assertThatThrownBy(() -> moneyService.emptyBox(box, exchangeRateService))
                 .isInstanceOf(IllegalStateException.class)

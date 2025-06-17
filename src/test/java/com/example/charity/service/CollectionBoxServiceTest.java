@@ -7,10 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.util.List;
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -28,17 +26,14 @@ class CollectionBoxServiceTest {
 
     @Test
     void shouldRegisterNewBox_WhenIdentifierIsUnique() {
-        // given
         CollectionBox box = new CollectionBox();
         box.setIdentifier("BOX-123");
 
         when(collectionBoxRepository.existsByIdentifier("BOX-123")).thenReturn(false);
         when(collectionBoxRepository.save(box)).thenReturn(box);
 
-        // when
         CollectionBox result = collectionBoxService.registerNewBox(box);
 
-        // then
         assertEquals("BOX-123", result.getIdentifier());
         verify(collectionBoxRepository).save(box);
     }

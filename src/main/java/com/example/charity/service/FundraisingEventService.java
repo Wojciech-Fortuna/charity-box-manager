@@ -5,7 +5,6 @@ import com.example.charity.model.FundraisingEvent;
 import com.example.charity.repository.FundraisingEventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -31,5 +30,4 @@ public class FundraisingEventService {
                 ))
                 .toList();
     }
-
 }
