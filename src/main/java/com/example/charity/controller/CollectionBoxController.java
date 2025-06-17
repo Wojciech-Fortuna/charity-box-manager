@@ -1,5 +1,6 @@
 package com.example.charity.controller;
 
+import com.example.charity.dto.CollectionBoxInfoDto;
 import com.example.charity.model.CollectionBox;
 import com.example.charity.model.FundraisingEvent;
 import com.example.charity.service.CollectionBoxService;
@@ -23,13 +24,19 @@ public class CollectionBoxController {
     }
 
     @GetMapping
-    public List<CollectionBox> getAllBoxes() {
-        return collectionBoxService.listAllBoxes();
+    public List<CollectionBoxInfoDto> getAllBoxes() {
+        return collectionBoxService.listAllBoxes().stream()
+                .map(box -> new CollectionBoxInfoDto(
+                        box.getBoxId(),
+                        box.getEvent() != null,
+                        box.getMoneyList() == null || box.getMoneyList().isEmpty()
+                ))
+                .toList();
     }
 
     @DeleteMapping("/{id}")
     public void unregisterBox(@PathVariable Long id) {
-        collectionBoxService.unregisterBox(id); // w wersji minimum
+        collectionBoxService.unregisterBox(id);
     }
 
     @PostMapping("/{boxId}/assign/{eventId}")

@@ -20,7 +20,9 @@ public class FundraisingEvent {
 
     private String name;
 
-    private String currency;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Currency currency;
 
     @Column(name = "account_amount")
     private BigDecimal accountAmount = BigDecimal.ZERO;

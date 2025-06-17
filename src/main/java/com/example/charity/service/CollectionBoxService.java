@@ -13,8 +13,12 @@ import java.util.List;
 public class CollectionBoxService {
 
     private final CollectionBoxRepository collectionBoxRepository;
+    private final MoneyService moneyService;
 
     public CollectionBox registerNewBox(CollectionBox box) {
+        if (collectionBoxRepository.existsByIdentifier(box.getIdentifier())) {
+            throw new IllegalArgumentException("Box with this identifier already exists.");
+        }
         return collectionBoxRepository.save(box);
     }
 
@@ -23,6 +27,8 @@ public class CollectionBoxService {
     }
 
     public void unregisterBox(Long boxId) {
+        CollectionBox box = getBox(boxId);
+        moneyService.deleteByBox(box);
         collectionBoxRepository.deleteById(boxId);
     }
 
@@ -31,6 +37,9 @@ public class CollectionBoxService {
     }
 
     public void assignToEvent(CollectionBox box, FundraisingEvent event) {
+        if (!box.isEmpty()) {
+            throw new IllegalStateException("Box must be empty before assignment.");
+        }
         box.setEvent(event);
         collectionBoxRepository.save(box);
     }

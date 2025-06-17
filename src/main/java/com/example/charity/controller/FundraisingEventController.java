@@ -1,10 +1,12 @@
 package com.example.charity.controller;
 
+import com.example.charity.dto.CreateFundraisingEventDto;
 import com.example.charity.model.FundraisingEvent;
 import com.example.charity.service.FundraisingEventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -15,7 +17,11 @@ public class FundraisingEventController {
     private final FundraisingEventService fundraisingEventService;
 
     @PostMapping
-    public FundraisingEvent createEvent(@RequestBody FundraisingEvent event) {
+    public FundraisingEvent createEvent(@RequestBody CreateFundraisingEventDto dto) {
+        FundraisingEvent event = new FundraisingEvent();
+        event.setName(dto.name());
+        event.setCurrency(dto.currency());
+        event.setAccountAmount(BigDecimal.ZERO);
         return fundraisingEventService.createEvent(event);
     }
 

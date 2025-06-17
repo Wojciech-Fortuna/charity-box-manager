@@ -16,6 +16,9 @@ public class MoneyService {
     private final MoneyRepository moneyRepository;
 
     public void addMoneyToBox(CollectionBox box, String currency, BigDecimal amount) {
+        if (!box.isAssigned()) {
+            throw new IllegalStateException("Cannot add money to an unassigned collection box.");
+        }
         Money money = new Money(null, currency, amount, box);
         moneyRepository.save(money);
     }
