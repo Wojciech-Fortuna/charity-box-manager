@@ -18,7 +18,7 @@ public class Money {
     private Long moneyId;
 
     @Column(length = 3, nullable = false)
-    private String currency;
+    private Currency currency;
 
     @Column(nullable = false)
     private BigDecimal amount;
