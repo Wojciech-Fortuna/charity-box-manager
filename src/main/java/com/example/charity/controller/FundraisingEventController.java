@@ -1,6 +1,7 @@
 package com.example.charity.controller;
 
 import com.example.charity.dto.CreateFundraisingEventDto;
+import com.example.charity.dto.FinancialReportDto;
 import com.example.charity.model.FundraisingEvent;
 import com.example.charity.service.FundraisingEventService;
 import jakarta.validation.Valid;
@@ -26,8 +27,9 @@ public class FundraisingEventController {
         return fundraisingEventService.createEvent(event);
     }
 
-    @GetMapping
-    public List<FundraisingEvent> getAllEvents() {
-        return fundraisingEventService.getAllEvents();
+    @GetMapping("/report")
+    public List<FinancialReportDto> getFinancialReport() {
+        return fundraisingEventService.getFinancialReport();
     }
+
 }
