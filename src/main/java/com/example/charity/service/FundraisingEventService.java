@@ -18,10 +18,6 @@ public class FundraisingEventService {
         return fundraisingEventRepository.save(event);
     }
 
-    public List<FundraisingEvent> getAllEvents() {
-        return fundraisingEventRepository.findAll();
-    }
-
     public FundraisingEvent getEventById(Long id) {
         return fundraisingEventRepository.findById(id).orElseThrow(() -> new RuntimeException("Event not found"));
     }
