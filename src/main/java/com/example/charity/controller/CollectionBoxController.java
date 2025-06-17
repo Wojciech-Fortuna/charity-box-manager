@@ -1,10 +1,12 @@
 package com.example.charity.controller;
 
 import com.example.charity.dto.CollectionBoxInfoDto;
+import com.example.charity.dto.CreateCollectionBoxDto;
 import com.example.charity.model.CollectionBox;
 import com.example.charity.model.FundraisingEvent;
 import com.example.charity.service.CollectionBoxService;
 import com.example.charity.service.FundraisingEventService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +21,9 @@ public class CollectionBoxController {
     private final FundraisingEventService fundraisingEventService;
 
     @PostMapping
-    public CollectionBox registerBox(@RequestBody CollectionBox box) {
+    public CollectionBox registerBox(@RequestBody @Valid CreateCollectionBoxDto dto) {
+        CollectionBox box = new CollectionBox();
+        box.setIdentifier(dto.identifier());
         return collectionBoxService.registerNewBox(box);
     }
 

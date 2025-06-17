@@ -3,6 +3,7 @@ package com.example.charity.controller;
 import com.example.charity.dto.CreateFundraisingEventDto;
 import com.example.charity.model.FundraisingEvent;
 import com.example.charity.service.FundraisingEventService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class FundraisingEventController {
     private final FundraisingEventService fundraisingEventService;
 
     @PostMapping
-    public FundraisingEvent createEvent(@RequestBody CreateFundraisingEventDto dto) {
+    public FundraisingEvent createEvent(@RequestBody @Valid CreateFundraisingEventDto dto) {
         FundraisingEvent event = new FundraisingEvent();
         event.setName(dto.name());
         event.setCurrency(dto.currency());

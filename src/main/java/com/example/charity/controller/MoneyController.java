@@ -4,6 +4,7 @@ import com.example.charity.dto.AddMoneyRequestDto;
 import com.example.charity.model.CollectionBox;
 import com.example.charity.service.CollectionBoxService;
 import com.example.charity.service.MoneyService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class MoneyController {
     private final CollectionBoxService collectionBoxService;
 
     @PostMapping("/add")
-    public void addMoneyToBox(@RequestBody AddMoneyRequestDto dto) {
+    public void addMoneyToBox(@RequestBody @Valid AddMoneyRequestDto dto) {
         CollectionBox box = collectionBoxService.getBox(dto.boxId());
         moneyService.addMoneyToBox(box, dto.currency(), dto.amount());
     }
